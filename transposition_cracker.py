@@ -1,6 +1,9 @@
+"""
+based off the following
+http://homepages.math.uic.edu/~leon/mcs425-s08/handouts/breaking_tranposition_cipher.pdf
+"""
 import sys
 import csv
-
 
 letter_data = list(csv.reader(open("standard_letter_frequency.txt")))
 letter_dict = {}
@@ -50,6 +53,10 @@ def Main():
 
     formatted_input_data = generate_grid_from_text(clean_text, size)
 
+    """
+    generate a size * size grid where each has a i row, j column referring to a i column j column summation as seen in the
+    guide above to generate values.
+    """
     sum_matrix = []
     for i in range(size):
         row_i = []
@@ -65,6 +72,9 @@ def Main():
 
         sum_matrix.append(row_i)
 
+    """
+    the previous start values are then used to generate candidates for a starting column and then a chain reaction
+    """
     s = 0
     possible_start_rows = [True] * size
     highest_dict = {}
